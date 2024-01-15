@@ -111,7 +111,7 @@ fn main() {
         let bands: Vec<&mut [u8]> = pixels.chunks_mut(rows_per_band * bounds.0).collect(); // collect method builds a vector holding the mutable slices
 
         crossbeam::scope(|spawner| { // Create threads
-            for (i, band) in bands.into_iter().enumerate() {
+            for (i, band) in bands.into_iter().enumerate() { // Iterate over each band - into_iter gives each iteration an ownership to a band
 
                 let top = rows_per_band * i;
                 let height = band.len() / bounds.0;
